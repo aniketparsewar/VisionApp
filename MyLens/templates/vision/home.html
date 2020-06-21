@@ -1,127 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta charset="UTF-8">
-      <meta name="theme-color">
-      <title>Twitter Sentiment Analyzer</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="apple-touch-icon" href="apple-touch-icon.png">
-      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-      <meta name="description" content="Twitter Sentiment Analyzer">
-      <style>
-      table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-            margin-bottom: 15%;
-      }
-      th {
-         border: 1px solid #dddddd;
-         text-align: center;
-         padding: 8px;
-      }
-      td {
-         border: 1px solid #dddddd;
-         text-align: left;
-         padding: 8px;
-         word-break: break-all;
-      }
-      tr:nth-child(even) {
-         background-color: #dddddd;
-      }
-         * {
-         box-sizing: border-box;
-         }
-         body {
-         font-family: Arial, Helvetica, sans-serif;
-         }
-         /* Float four columns side by side */
-         .column {
-         float: left;
-         width: 25%;
-         padding: 0 5px;
-         }
-         .row {margin: 0 -5px;}
-         /* Clear floats after the columns */
-         .row:after {
-         content: "";
-         display: table;
-         clear: both;
-         }
-         /* Responsive columns */
-         @media screen and (max-width: 600px) {
-         .column {
-         width: 100%;
-         display: block;
-         margin-bottom: 10px;
-         }
-         }
-         /* Style the counter cards */
-         .card {
-         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-         padding: 16px;
-         text-align: center;
-         background-color: #492746;
-         color: white;
-         border-radius: 20px;
-         }
-         .card:hover {
-         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-         }
-         .fa {font-size:100px;}
-         .footer {
-         position: fixed;
-         height:12%;
-         left: 0;
-         bottom: 0;
-         width: 100%;
-         background-color: black;
-         color: white;
-         text-align: center;
-         }
+<head>
+    <meta charset="UTF-8">
+    <title>Image Analysis</title>
+</head>
+<body>
+    <form method = "post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+    <button type="submit">Upload</button>
+    </form>
+    <div>
+        {% for i in predict %}
+        <h3>{{i}}</h3>
+        {% endfor %}
+    </div>>
+</body>
 
-      </style>
-   </head>
-   <body>
-      <div class="w3-container w3-black">
-         <a style="font-size:20px"><img src="https://cdn2.iconfinder.com/data/icons/minimalism/512/twitter.png" width="80" height="50" class="d-inline-block align-top" alt="">
-         Twitter Sentiment Analyzer</a>
-      </div>
-
-      <h2 class="w3-center">
-         Enter Search String
-         <form action="#link1" method="get" class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" name="search_string" type="search" placeholder="Enter Search String" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-         </form>
-      </h2>
-
-      <h3 class="w3-center" id="link1"></h3>
-      {% load list1 %}
-      <div class="table-responsive">
-      <table style="table-layout: fixed; width: 100%;">
-         <tr>
-            <th style="width:75%">Top Tweets</th>
-            <th style="width:25%">Sentiment</th>
-         </tr>
-      {% for key, value in tweet_dict.items %}
-         <tr>
-
-            {% if value > 0.3 %}
-               <td>{{key}}</td>
-               <td bgcolor="#b3ffd1">{{value}}</td>
-            {% else %}
-               <td>{{key}}</td>
-               <td bgcolor="#ffb6a3">{{value}}</td>
-            {% endif %}
-         </tr>
-      {% endfor %}
-      </table>
-      </div>>
-      <div class="footer">
-         <p>Design and Developed by Aniket</p>
-         <a class="w3-footer" href="https://www.linkedin.com/in/aniketparsewar"><i class="fab fa-linkedin"></i></a>
-      </div>
-      <script src="https://kit.fontawesome.com/1d2017b0a5.js" crossorigin="anonymous"></script>
-   </body>
 </html>
