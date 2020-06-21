@@ -63,10 +63,3 @@ def index(request):
     #ImageLens = ImageLens.objects.all()
     return render(request, 'vision/home.html', {'predict': predict})
 
-
-def display_images(request):
-    if request.method == 'GET':
-        # getting all the objects of hotel.
-        ImageLens = ImageLens.objects.all()
-        return render((request, 'display_images.html',
-                       {'main_images': ImageLens}))

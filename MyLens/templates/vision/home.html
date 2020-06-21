@@ -10,25 +10,40 @@
       <link rel="apple-touch-icon" href="apple-touch-icon.png">
       <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
       <meta name="description" content="Image Analyzer">
+<style>
+.button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+</style>
 </head>
 <body>
 <div class="w3-container w3-black">
          <a style="font-size:20px"><img src="https://neurohive.io/wp-content/uploads/2018/11/vgg16-1-e1542731207177.png" width="80" height="50" class="d-inline-block align-top" alt="">
          Image Analyzer</a>
-     <p><a href="{% url 'image_upload' %}">Upload New Image</a></p>
-      </div>
 
+      </div>
+    <p><a href="{% url 'image_upload' %}" style="font-size: 25px; color: blue">Upload New Image</a></p>
     <form method = "post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
-    <button type="submit">Analyze Image</button>
+    <button class="button" type="submit">Analyze Image</button>
 
     </form>
+
     <div>
         {% for i in predict %}
         <h3>{{i}}</h3>
         {% endfor %}
-        <img src="media/images/Main_Img.jpg" alt="Image"/>
+        <img src="media/images/Main_Img.jpg" style='width:100%;' border="0" alt="Null"/>
     </div>>
 
 </body>
