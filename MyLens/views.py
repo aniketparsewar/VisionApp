@@ -31,6 +31,10 @@ def image_view(request):
         form = ImageForm()
     return render(request, 'vision/image_upload.html', {'form': form})
 
+def landing(request):
+    predict = []
+    return render(request, 'vision/landing.html', {'predict': predict})
+
 def index(request):
 
     # load an image from file

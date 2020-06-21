@@ -43,9 +43,10 @@
         {% for i in predict %}
         <h3>{{i}}</h3>
         {% endfor %}
+        {% block image %}
         <img src="media/images/Main_Img.jpg" style='width:100%;' border="0" alt="Null"/>
-    </div>>
-
+        {% endblock %}
+    </div>
 </body>
 
 </html>

@@ -6,7 +6,8 @@ from .views import *
 from . import views
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('index', views.index, name='index'),
+    path('', views.landing, name='landing'),
     path('image_upload', views.image_view, name = 'image_upload'),
 ]
 if settings.DEBUG:
