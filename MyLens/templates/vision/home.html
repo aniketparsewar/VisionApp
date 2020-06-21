@@ -3,18 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>Image Analysis</title>
+    <meta charset="UTF-8">
+      <meta name="theme-color">
+      <title>Image Analyzer</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="apple-touch-icon" href="apple-touch-icon.png">
+      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+      <meta name="description" content="Image Analyzer">
 </head>
 <body>
+<div class="w3-container w3-black">
+         <a style="font-size:20px"><img src="https://neurohive.io/wp-content/uploads/2018/11/vgg16-1-e1542731207177.png" width="80" height="50" class="d-inline-block align-top" alt="">
+         Image Analyzer</a>
+     <p><a href="{% url 'image_upload' %}">Upload New Image</a></p>
+      </div>
+
     <form method = "post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
-    <button type="submit">Upload</button>
+    <button type="submit">Analyze Image</button>
+
     </form>
     <div>
         {% for i in predict %}
         <h3>{{i}}</h3>
         {% endfor %}
+        <img src="media/images/Main_Img.jpg" alt="Image"/>
     </div>>
+
 </body>
 
 </html>

@@ -60,6 +60,7 @@ def index(request):
     #print('%s (%.2f%%)' % (label[1], label[2] * 100))
     #predict = str(label[1]) + ', ' + str(label[2]*100) + '%'
     #print(predict)
+    #ImageLens = ImageLens.objects.all()
     return render(request, 'vision/home.html', {'predict': predict})
 
 
