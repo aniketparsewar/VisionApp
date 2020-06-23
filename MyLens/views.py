@@ -9,35 +9,71 @@ from django.shortcuts import render, redirect
 from .forms import *
 from django.conf import settings
 import os
+import requests
 
 
 def image_view(request):
     if (os.path.join(settings.MEDIA_ROOT, 'images/Main_Img.jpg') == True):
         os.remove(os.path.join(settings.MEDIA_ROOT, 'images/Main_Img.jpg'))
-    #print(request.method)
     if request.method == 'POST':
         form = ImageForm(request.POST, request.FILES)
-        #print(form.is_valid())
         if form.is_valid():
             if (os.path.join(settings.MEDIA_ROOT, 'images/Main_Img.jpg') == True):
                 os.remove(os.path.join(settings.MEDIA_ROOT, 'images/Main_Img.jpg'))
-            #document=form.save(commit=False)
-            #document.name = 'Main_Img.jpg'
-            #document.save()
-            #print(document.name)
+
             form.save()
             return redirect('index')
     else:
         form = ImageForm()
     return render(request, 'vision/image_upload.html', {'form': form})
 
+
+def msft_vision(request):
+    if (os.path.join(settings.MEDIA_ROOT, 'images/Main_Img.jpg') == True):
+        os.remove(os.path.join(settings.MEDIA_ROOT, 'images/Main_Img.jpg'))
+    if request.method == 'POST':
+        form = ImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            if (os.path.join(settings.MEDIA_ROOT, 'images/Main_Img.jpg') == True):
+                os.remove(os.path.join(settings.MEDIA_ROOT, 'images/Main_Img.jpg'))
+
+            form.save()
+            return redirect('msft_index')
+    else:
+        form = ImageForm()
+    return render(request, 'vision/msft_vision.html', {'form': form})
+
+
+def msft_index(request):
+    file_path = os.path.join(settings.MEDIA_ROOT, 'images/Main_Img.jpg' )
+    image_data = open(file_path, "rb").read()
+    url = "https://microsoft-azure-microsoft-computer-vision-v1.p.rapidapi.com/analyze"
+    querystring = {"visualfeatures": "Tags"}
+
+    headers = {
+        'x-rapidapi-host': "microsoft-azure-microsoft-computer-vision-v1.p.rapidapi.com",
+        'x-rapidapi-key': "6baec3a959msh19ecd967352bd8ap1d175ajsn23b072e115e0",
+        'content-type': "application/octet-stream"
+    }
+
+    response = requests.request("POST", url, data=image_data, headers=headers, params=querystring)
+    data_dict = response.json()
+    predict=[]
+    pred = data_dict['tags']
+    x=0
+    for ele in pred:
+        name=ele['name']
+        confidence = ele['confidence']
+        predict.append("{}. {}: {:.2f}%".format(x + 1, name, confidence * 100))
+        x += 1
+    return render(request, 'vision/home.html', {'predict': predict})
+
+
 def landing(request):
     predict = []
     return render(request, 'vision/landing.html', {'predict': predict})
 
 def index(request):
-
-    # load an image from file
     file_path = os.path.join(settings.MEDIA_ROOT, 'images/Main_Img.jpg' )
     image = load_img(file_path, target_size=(224, 224))
     # convert the image pixels to a numpy array
@@ -66,4 +102,6 @@ def index(request):
     #print(predict)
     #ImageLens = ImageLens.objects.all()
     return render(request, 'vision/home.html', {'predict': predict})
+
+
 
