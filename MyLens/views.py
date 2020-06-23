@@ -52,7 +52,7 @@ def msft_index(request):
 
     headers = {
         'x-rapidapi-host': "microsoft-azure-microsoft-computer-vision-v1.p.rapidapi.com",
-        'x-rapidapi-key': "6baec3a959msh19ecd967352bd8ap1d175ajsn23b072e115e0",
+        'x-rapidapi-key': "",
         'content-type': "application/octet-stream"
     }
 
