@@ -55,7 +55,7 @@ textblob==0.8.0
 torch==1.5.1
 torchvision==0.6.1
 tweepy==3.8.0
-urllib3==1.25.8
+urllib3==1.26.5
 Werkzeug==1.0.1
 whitenoise==5.0.1
 wrapt==1.12.1
